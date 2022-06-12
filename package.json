@@ -4,7 +4,7 @@
   "description": "",
   "main": "nodejs-express/src/index.js",
   "scripts": {
-    "start": "nodemon -r esm nodejs-express/src/server.js"
+    "start": "node -r esm nodejs-express/src/server.js"
   },
   "dependencies": {
     "body-parser": "1.19.0",
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "esm": "^3.2.25",
-    "nodemon": "1.18.4"
+    "nodemon": "^1.18.4"
   },
   "keywords": []
 }
