@@ -5,7 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'http://localhost:8080/v1/graphql'
-const X_HASURA_ADMIN_SECRET = process.env["x-hasura-admin-secret"] || '123'
+const X_HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET || '123'
 
 app.use(bodyParser.json());
 
@@ -31,7 +31,7 @@ const execute = async (variables) => {
     {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${X_HASURA_ADMIN_SECRET}`
+        'x-hasura-admin-secret': X_HASURA_ADMIN_SECRET
       },
       body: JSON.stringify({
         query: HASURA_OPERATION,
