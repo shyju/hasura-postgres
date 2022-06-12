@@ -24,5 +24,6 @@ services:
       ## uncomment next line to set an admin secret
       # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
       ACTION_BASE_URL: http://host.docker.internal:3000
+      HASURA_CONSOLE_URL: http://localhost:8080
 volumes:
   db_data:
