@@ -2,7 +2,7 @@ actions:
   - name: insertProduct
     definition:
       kind: synchronous
-      handler: http://host.docker.internal:3000/insertProduct
+      handler: '{{ACTION_BASE_URL}}/insertProduct'
 custom_types:
   enums: []
   input_objects: []
