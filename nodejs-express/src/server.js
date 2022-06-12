@@ -4,10 +4,11 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'localhost:3000'
 
 app.use(bodyParser.json());
 
-const fetch = require("node-fetch")
+const fetch = require("node-fetch");
 
 const HASURA_OPERATION = `
 mutation insertProduct($productName: String!) {
@@ -25,7 +26,7 @@ mutation insertProduct($productName: String!) {
 // execute the parent operation in Hasura
 const execute = async (variables) => {
   const fetchResponse = await fetch(
-    `${HASURA_CONSOLE_URL}`,
+    `${HASURA_BASE_URL}`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -64,6 +65,8 @@ app.post('/insertProduct', async (req, res) => {
 });
 
 app.get('/hello', async (req, res) => {
+
+  console.log('URL:', HASURA_BASE_URL);
   return res.json({
     hello: "world"
   });
