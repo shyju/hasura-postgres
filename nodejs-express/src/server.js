@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'localhost:3000'
+const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'http://localhost:8080/v1/graphql'
+const X_HASURA_ADMIN_SECRET = process.env["x-hasura-admin-secret"] || '123'
 
 app.use(bodyParser.json());
 
@@ -29,6 +30,9 @@ const execute = async (variables) => {
     `${HASURA_BASE_URL}`,
     {
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${X_HASURA_ADMIN_SECRET}`
+      },
       body: JSON.stringify({
         query: HASURA_OPERATION,
         variables
