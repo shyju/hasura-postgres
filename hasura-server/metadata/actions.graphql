@@ -1,0 +1,10 @@
+type Mutation {
+  insertProduct(
+    productName: String!
+  ): InsertProductOutput
+}
+
+type InsertProductOutput {
+  affected_rows: Int!
+}
+

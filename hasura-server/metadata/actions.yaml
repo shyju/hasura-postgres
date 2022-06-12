@@ -1,0 +1,11 @@
+actions:
+  - name: insertProduct
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/insertProduct
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+    - name: InsertProductOutput
+  scalars: []
