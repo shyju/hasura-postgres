@@ -4,10 +4,12 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'http://localhost:8080/v1/graphql'
+const X_HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET || '123'
 
 app.use(bodyParser.json());
 
-const fetch = require("node-fetch")
+const fetch = require("node-fetch");
 
 const HASURA_OPERATION = `
 mutation insertProduct($productName: String!) {
@@ -25,9 +27,12 @@ mutation insertProduct($productName: String!) {
 // execute the parent operation in Hasura
 const execute = async (variables) => {
   const fetchResponse = await fetch(
-    "http://localhost:8080/v1/graphql",
+    `${HASURA_BASE_URL}`,
     {
       method: 'POST',
+      headers: {
+        'x-hasura-admin-secret': X_HASURA_ADMIN_SECRET
+      },
       body: JSON.stringify({
         query: HASURA_OPERATION,
         variables
@@ -64,6 +69,8 @@ app.post('/insertProduct', async (req, res) => {
 });
 
 app.get('/hello', async (req, res) => {
+
+  console.log('URL:', HASURA_BASE_URL);
   return res.json({
     hello: "world"
   });
