@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'http://localhost:8080/v1/graphql'
@@ -75,5 +76,10 @@ app.get('/hello', async (req, res) => {
     hello: "world"
   });
 });
+
+app.get('/', async(req, res) => {
+  // return res.send(`Hi Deepak, checkout this Hasura cloud <a href="hp-master.hasura.app">hp-master.hasura.app</a>`)
+  return res.sendFile(path.join(__dirname+'/index.html'));
+})
 
 app.listen(PORT);

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node App for Hasura Actions</title>
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/normalize.css/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/milligram/dist/milligram.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      div[role='main'] {
+        max-width: 800px;
+        flex: 1;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      footer p {
+        margin-bottom: 0;
+      }
+
+      code {
+        font-family: Consolas,"courier new";
+        color: crimson;
+        background-color: #f1f1f1;
+        padding: 2px;
+        font-size: 105%;
+      }
+
+      .submit-button {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Node App deployed on Heroku</h1>
+    </header>
+    <div role="main">
+      <section>
+        <h3>Hey Buddy !!</h3>
+          <p>This a sample node app which exposes an API which can we called through Hasura actions.</p>
+
+          <p>Try out the below mutation to trigger the insertProduct action from GraphiQL.</p>
+  
+          <code>
+            mutation {
+              insertProduct(productName: "ProductName") {
+                affected_rows
+              }
+            }
+          </code>
+          </br>
+          <p>
+            <button id="myButton" class="float-left submit-button" >Go to Hasura</button>
+          </p>
+      </section>
+    </div>
+    <script type="text/javascript">
+      document.getElementById('myButton').onclick = function() {
+        // location.href = "https://hp-master.hasura.app"
+        window.open("https://hp-master.hasura.app", "_blank");
+      }
+    </script>
+  </body>
+</html>
