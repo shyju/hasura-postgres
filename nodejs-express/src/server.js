@@ -45,6 +45,10 @@ const execute = async (variables) => {
   return data;
 };
   
+app.get('/', async(req, res) => {
+  // return res.send(`Hi Deepak, checkout this Hasura cloud <a href="hp-master.hasura.app">hp-master.hasura.app</a>`)
+  return res.sendFile(path.join(__dirname+'/index.html'));
+})
 
 // Request Handler
 app.post('/insertProduct', async (req, res) => {
@@ -69,12 +73,6 @@ app.post('/insertProduct', async (req, res) => {
 
 });
 
-app.get('/', async (req, res) => {
-
-  console.log('URL:', HASURA_BASE_URL);
-  return res.send(`Hi Deepak, this is for you. Checkout hasura console: ${HASURA_BASE_URL}`);
-});
-
 app.get('/hello', async (req, res) => {
 
   console.log('URL:', HASURA_BASE_URL);
@@ -82,10 +80,5 @@ app.get('/hello', async (req, res) => {
     hello: "world"
   });
 });
-
-app.get('/', async(req, res) => {
-  // return res.send(`Hi Deepak, checkout this Hasura cloud <a href="hp-master.hasura.app">hp-master.hasura.app</a>`)
-  return res.sendFile(path.join(__dirname+'/index.html'));
-})
 
 app.listen(PORT);
