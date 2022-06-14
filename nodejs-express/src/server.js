@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'http://localhost:8080/v1/graphql'
+const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'https://hp-master.hasura.app/v1/graphql'
 const X_HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET || 'JXiDd8keq@V2hZc'
 
 app.use(bodyParser.json());
