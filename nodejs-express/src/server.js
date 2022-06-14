@@ -68,6 +68,12 @@ app.post('/insertProduct', async (req, res) => {
 
 });
 
+app.get('/', async (req, res) => {
+
+  console.log('URL:', HASURA_BASE_URL);
+  return res.send(`Hi Deepak, this is for you. Checkout hasura console: ${HASURA_BASE_URL}`);
+});
+
 app.get('/hello', async (req, res) => {
 
   console.log('URL:', HASURA_BASE_URL);
