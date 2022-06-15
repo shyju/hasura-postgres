@@ -57,17 +57,17 @@
     <div role="main">
       <section>
         <h3>Hey Buddy !!</h3>
-          <p>This a sample node app which exposes an API which can we called through Hasura actions.</p>
+          <p>This a sample node app which exposes an API which can be called through Hasura actions.</p>
 
           <p>Try out the below mutation to trigger the insertProduct action from GraphiQL.</p>
   
-          <code>
+          <pre><code>
             mutation {
               insertProduct(productName: "ProductName") {
                 affected_rows
               }
             }
-          </code>
+          </code></pre>
           </br>
           <p>
             <button id="myButton" class="float-left submit-button" >Go to Hasura</button>
@@ -76,7 +76,6 @@
     </div>
     <script type="text/javascript">
       document.getElementById('myButton').onclick = function() {
-        // location.href = "https://hp-master.hasura.app"
         window.open("https://hp-master.hasura.app", "_blank");
       }
     </script>
