@@ -27,6 +27,7 @@ mutation insertProduct($productName: String!) {
 
 // execute the parent operation in Hasura
 const execute = async (variables) => {
+  console.log('variables:', variables);
   const fetchResponse = await fetch(
     `${HASURA_BASE_URL}`,
     {
