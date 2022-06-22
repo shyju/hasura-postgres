@@ -3,9 +3,15 @@ actions:
     definition:
       kind: synchronous
       handler: '{{ACTION_BASE_URL}}/insertProduct'
+  - name: sendSMS
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/sendSMS'
+    comment: send sms
 custom_types:
   enums: []
   input_objects: []
   objects:
     - name: InsertProductOutput
+    - name: SMSOutput
   scalars: []

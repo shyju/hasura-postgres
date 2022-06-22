@@ -4,7 +4,19 @@ type Mutation {
   ): InsertProductOutput
 }
 
+type Mutation {
+  sendSMS(
+    body: String!
+    from: String!
+    to: String!
+  ): SMSOutput
+}
+
 type InsertProductOutput {
   affected_rows: Int!
+}
+
+type SMSOutput {
+  response: String!
 }
 

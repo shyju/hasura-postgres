@@ -62,6 +62,7 @@
           <p>Try out the below mutation to trigger the insertProduct action from GraphiQL.</p>
   
           <pre><code>
+            // insert product
             mutation {
               insertProduct(productName: "ProductName") {
                 affected_rows
@@ -69,6 +70,18 @@
             }
           </code></pre>
           </br>
+          <pre><code>
+            // send SMS 
+            mutation {
+              sendSMS(
+                body: "// type your message here", 
+                from: "+16066444698", // use this number as twilio is in trial mode
+                to: "+919539394104" // can send to only one number in trial mode
+              ) {
+                response
+              }
+            }
+          </code></pre>
           <p>
             <button id="myButton" class="float-left submit-button" >Go to Hasura</button>
           </p>

@@ -7,6 +7,10 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const HASURA_BASE_URL = process.env.HASURA_CONSOLE_URL || 'http://localhost:8080/v1/graphql'
 const X_HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET || '123'
+const accountSID = process.env.TWILIO_ACCOUNT_SID || 'ACb5db92822d78c7fc3d35487689671e82';
+const authToken = process.env.TWILIO_AUTH_TOKEN || '9eb6d480d1b2f3ddf4328c09355e16ee';
+
+const twilioClient = require('twilio')(accountSID, authToken);
 
 app.use(bodyParser.json());
 
@@ -27,6 +31,7 @@ mutation insertProduct($productName: String!) {
 
 // execute the parent operation in Hasura
 const execute = async (variables) => {
+  console.log('variables:', variables);
   const fetchResponse = await fetch(
     `${HASURA_BASE_URL}`,
     {
@@ -72,6 +77,24 @@ app.post('/insertProduct', async (req, res) => {
   })
 
 });
+
+
+app.post('/sendSMS', async(req, res) => {
+  const {body, from, to} = req.body.input;
+
+  twilioClient.messages
+  .create({body, from, to})
+  .then(message => {
+    console.log(message);
+    return res.json({
+      response: {
+        messageSID: message.sid,
+        status: message.status
+      }
+    })
+  })
+
+})
 
 app.get('/hello', async (req, res) => {
 
